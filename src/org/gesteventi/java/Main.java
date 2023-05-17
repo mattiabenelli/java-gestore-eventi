@@ -3,9 +3,13 @@ package org.gesteventi.java;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.gesteventi.java.obj.Concerto;
+import org.gesteventi.java.obj.Evento;
+import org.gesteventi.java.obj.ProgrammaEventi;
 
 public class Main {
 	
@@ -13,8 +17,13 @@ public class Main {
 		
 		Concerto c1 = null;
 		int choice;
+		
+		List<Evento> eventi = new ArrayList<>();
+		ProgrammaEventi programma = new ProgrammaEventi(null, eventi);
 
 		Scanner sc = new Scanner(System.in);
+		
+		
 		
 		System.out.println("inserisci data: ");
 		LocalDate data =  LocalDate.parse(sc.nextLine());
@@ -33,6 +42,7 @@ public class Main {
 		
 		try {
 			c1 = new Concerto(titolo, data, postiTot, 0, ora, prezzo);
+			eventi.add(c1);
 			
 		} catch (Exception e) {
 
@@ -95,6 +105,8 @@ public class Main {
 			}
 		}
 		System.out.println(c1);
+		
+		System.out.println(programma);
 		
 		sc.close();
 	}
