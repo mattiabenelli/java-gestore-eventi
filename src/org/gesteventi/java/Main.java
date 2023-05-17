@@ -1,15 +1,17 @@
 package org.gesteventi.java;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
-import org.gesteventi.java.obj.Evento;
+import org.gesteventi.java.obj.Concerto;
 
 public class Main {
 	
 	public static void main(String[] args) {
 		
-		Evento e1 = null;
+		Concerto c1 = null;
 		int choice;
 
 		Scanner sc = new Scanner(System.in);
@@ -17,14 +19,20 @@ public class Main {
 		System.out.println("inserisci data: ");
 		LocalDate data =  LocalDate.parse(sc.nextLine());
 		
-		System.out.println("inserisci nome dell'evento");
+		System.out.println("inserisci nome del concerto");
 		String titolo = sc.nextLine();
 		
 		System.out.println("inserisci numero posti: ");
 		int postiTot = sc.nextInt();
 		
+		System.out.println("inserisci l'ora del concerto: ");
+		LocalTime ora = LocalTime.parse(sc.next());
+		
+		System.out.println("inserisci prezzo: ");
+		BigDecimal prezzo = sc.nextBigDecimal();
+		
 		try {
-			e1 = new Evento(titolo, data, postiTot, 0);
+			c1 = new Concerto(titolo, data, postiTot, 0, ora, prezzo);
 			
 		} catch (Exception e) {
 
@@ -51,14 +59,14 @@ public class Main {
 			int numPre  = sc.nextInt();
 			
 			try {
-				e1.prenota(numPre);
+				c1.prenota(numPre);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
-		System.out.println(e1);
+		System.out.println(c1);
 		
 		while(true) {
 			
@@ -80,13 +88,13 @@ public class Main {
 			int numPre  = sc.nextInt();
 			
 			try {
-				e1.disdici(numPre);
+				c1.disdici(numPre);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		System.out.println(e1);
+		System.out.println(c1);
 		
 		sc.close();
 	}
