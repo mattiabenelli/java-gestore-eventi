@@ -60,7 +60,7 @@ public class Evento {
 		this.postiPre = postiPre;
 	}
 	
-	public void prenota() throws Exception {
+	public void prenota(int numPosti) throws Exception {
 		
 		if(postiPre == postiTot) {
 			
@@ -70,13 +70,18 @@ public class Evento {
 			
 			throw new Exception("l'evento si è già concluso");
 		}
+		else if((postiPre + numPosti) > postiTot){
+			
+			throw new Exception("Non si possono prenotare così tanti posti"
+								+ "\nposti rimantenti: " + (postiTot - postiPre));
+		}
 		else {
 			
-			postiPre++;
+			postiPre = postiPre + numPosti;
 		}
 	}
 	
-	public void disdici() throws Exception {
+	public void disdici(int numPosti) throws Exception {
 		
 		if(postiPre == 0) {
 			
@@ -86,9 +91,14 @@ public class Evento {
 			
 			throw new Exception("l'evento si è già concluso");
 		}
+		else if((postiPre - numPosti) < 0){
+			
+			throw new Exception("Non si possono disdire così tanti posti"
+								+ "\nprenotazioni attive: " + (postiPre));
+		}
 		else {
 			
-			postiPre--;
+			postiPre = postiPre - numPosti;
 		}
 	}
 	

@@ -10,6 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Evento e1 = null;
+		int choice;
 
 		Scanner sc = new Scanner(System.in);
 		
@@ -30,24 +31,62 @@ public class Main {
 			System.out.println("problema durante creazione dell'evento riprovare");
 		}
 		
-		try {
-			e1.prenota();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		while(true) {
+			
+			System.out.println("Vuoi prenotare dei posti? 1-si 2-no");
+			choice = sc.nextInt();
+			
+			if(choice < 1 || choice > 2) {
+				System.out.println("codice non valido: riprovare");
+				continue;
+			}
+			else {
+				break;
+			}
+			
+		}
+		if(choice == 1) {
+			
+			System.out.println("Quanti posti vuoi prenotare: ");
+			int numPre  = sc.nextInt();
+			
+			try {
+				e1.prenota(numPre);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		System.out.println(e1);
 		
-		try {
-			e1.disdici();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		while(true) {
+			
+			System.out.println("Vuoi disdire le prenotazioni? 1-si 2-no");
+			choice = sc.nextInt();
+			
+			if(choice < 1 || choice > 2) {
+				System.out.println("codice non valido: riprovare");
+				continue;
+			}
+			else {
+				break;
+			}
+			
 		}
-		
+		if(choice == 1) {
+			
+			System.out.println("Quanti posti vuoi disdire: ");
+			int numPre  = sc.nextInt();
+			
+			try {
+				e1.disdici(numPre);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		System.out.println(e1);
-		e1.toStringTitolo();
 		
 		sc.close();
 	}
